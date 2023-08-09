@@ -21,6 +21,7 @@ app.get('/screenshot', (req, res) => {
         await page.setViewport({ width: Number(width) || 1280, height: Number(height) || 720, deviceScaleFactor: 2 });
         res.type('image/png');
         res.send(await page.screenshot({ type: 'png' }));
+        await browser.close();
     })();
 })
 
