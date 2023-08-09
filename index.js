@@ -12,7 +12,10 @@ app.get('/screenshot', (req, res) => {
     const height = req.query.height || 720;
 
     (async () => {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox']
+        });
         const page = await browser.newPage();
         await page.goto(url);
         await page.setViewport({ width: Number(width) || 1280, height: Number(height) || 720, deviceScaleFactor: 2 });
